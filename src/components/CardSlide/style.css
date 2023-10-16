@@ -1,0 +1,10 @@
+.slick-slider {
+    margin: 4rem 0 !important;
+    padding: 0 1.4rem;
+}
+
+.slick-slide {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
