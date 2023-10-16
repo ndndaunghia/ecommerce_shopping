@@ -1,0 +1,109 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 1rem 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.logo a {
+  font-size: 2rem;
+  color: #333;
+  font-weight: bolder;
+}
+
+.menuBtn {
+  display: none !important;
+}
+
+.navbar a {
+  font-size: 1rem;
+  padding: 0 1.5rem;
+  color: #666;
+}
+
+.navbar a:hover {
+  color: #088178;
+}
+
+.icon .iconItem {
+  font-size: 1.4rem;
+  color: #333;
+  margin-left: 1.5rem;
+  cursor: pointer;
+}
+
+.icon .iconItem :hover {
+  color: #088178;
+}
+
+.active {
+  right: 2rem !important;
+  transition: .2s cubic-bezier(0.1, 0.7, 0.6, 0.9);
+}
+
+.searchForm {
+  position: absolute;
+  top: 110%;
+  right: -100%;
+  width: 18rem;
+  height: 2rem;
+  background-color: #fff;
+  border-radius: 0.2rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.searchForm input {
+  height: 100%;
+  width: 100%;
+  background: none;
+  text-transform: none;
+  /* font-size: 1.6rem; */
+  color: black;
+  padding: 1rem;
+}
+
+.searchIcon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchIcon:hover {
+  color: #088178;
+}
+
+@media (max-width: 991px) {
+  .header {
+  }
+}
+
+@media (max-width: 768px) {
+  .menuBtn {
+    display: inline-block !important;
+  }
+  .header .navbar {
+    position: absolute;
+    top: 110%;
+    right: -100%;
+    width: 10rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 0.4rem;
+    background-color: #fff;
+  }
+  .header .navbar a {
+    margin: 1rem 1.2rem;
+    display: block;
+    text-align: center;
+  }
+}

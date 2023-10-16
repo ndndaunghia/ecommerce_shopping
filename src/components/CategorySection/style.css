@@ -1,0 +1,24 @@
+.cardContainer {
+  /* margin: 2rem 0; */
+  padding: 0 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardItemWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12rem !important;
+}
+
+.cardItemWrapper:hover .categoryImg {
+  transform: scale(1.1);
+}
+
+.cardItemWrapper:hover .categoryImgWrapper {
+  border: 2px solid #088178;
+}
+
+

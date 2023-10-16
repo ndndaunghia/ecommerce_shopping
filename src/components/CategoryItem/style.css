@@ -1,0 +1,32 @@
+.categoryContainer {
+  width: 6rem;
+  height: 6rem;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* padding: 1rem; */
+}
+
+.categoryImgWrapper {
+    border: 1px solid black;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    /* width: 4rem; */
+}
+
+.categoryImg {
+  width: 100%;
+  /* transition: .2s linear; */
+}
+
+.categoryTitleWrapper {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.categoryTitle {
+    font-weight: 500;
+}
