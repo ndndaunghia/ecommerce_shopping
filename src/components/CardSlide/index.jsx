@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import ProductCard from "../ProductCard";
-import './style.css';
+import axios from "axios";
+import "./style.css";
+import { GET_TSHIRT_PRODUCTS } from "../../constant/api";
+import { Link } from "react-router-dom";
 
 export default function CardSlide() {
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(GET_TSHIRT_PRODUCTS)
+      .then((res) => {
+        setProduct(res.data.products);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   const settings = {
     infinite: true,
-    speed: 2000,
+    speed: 4000,
     slidesToShow: 4,
     slidesToScroll: 4,
     autoplay: true,
@@ -44,10 +59,18 @@ export default function CardSlide() {
   return (
     <>
       <Slider {...settings}>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {product.map((item, index) => {
+          return (
+            <Link to={`product-detail/${item._id}`}>
+              <ProductCard
+                name={item.name}
+                image={item.images[0].url}
+                price={item.price}
+                offerPrice={item.offerPrice}
+              />
+            </Link>
+          );
+        })}
       </Slider>
     </>
   );

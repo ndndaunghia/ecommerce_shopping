@@ -27,7 +27,7 @@ const router = createBrowserRouter([
             <Banner />
             <CategorySection />
             <TrendingSection />
-            <MediumBanner/>
+            <MediumBanner />
             <GuidanceSection />
           </>
         ),
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: "/product-detail",
+        path: "/product-detail/:id",
         element: <ProductDetail />,
       },
     ],
