@@ -3,6 +3,7 @@ import banner2 from "../assets/image/b10.jpg";
 import banner3 from "../assets/image/b7.jpg";
 import banner4 from "../assets/image/b4.jpg";
 import banner5 from "../assets/image/b18.jpg";
+import banner6 from "../assets/image/b2.jpg";
 
 export const NAVBAR_TITLE = {
   home: "Home",
@@ -63,6 +64,16 @@ export const SMALL_BANNER_DATA = [
     image: banner5,
   },
 ];
+
+export const SIGN_UP_BANNER_DATA = [
+  {
+    id: 1,
+    title: "Sign Up For Newsletters",
+    content: "Get E-mail updates about our latest shop and",
+    subContent: "special offers.",
+    image: banner6
+  }
+]
 
 export const GUIDANCE = [
   {
