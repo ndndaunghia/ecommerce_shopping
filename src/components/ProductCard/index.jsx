@@ -11,7 +11,7 @@ export default function ProductCard(props) {
         <div className="product-card-wrapper">
           <div className="product-card-img">
             <a href="">
-              <img src={image} alt="" />
+              <img src={image} alt="" loading="lazy"/>
             </a>
             <div className="product-card-icon-wrapper">
               <div className="product-card-icon">

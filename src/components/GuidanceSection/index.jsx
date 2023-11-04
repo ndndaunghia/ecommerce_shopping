@@ -4,11 +4,12 @@ import { GUIDANCE, SECTION_TITLE } from "../../constant/constant";
 import styled from "@emotion/styled";
 import TitleCustom from "../Title";
 
-const GuidanceSectionGridContainer = styled(Grid)({
+export const GuidanceSectionGridContainer = styled(Grid)({
   marginTop: "4rem",
+  marginBottom: "4rem",
 });
 
-const GuidanceSectionGrid = styled(Grid)(({ index }) => ({
+export const GuidanceSectionGrid = styled(Grid)(({ index }) => ({
   textAlign: "center",
   borderRight: index !== 3 ? "1px solid #CCC8AA" : "none",
 }));

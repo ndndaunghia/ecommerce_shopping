@@ -37,6 +37,11 @@ export default function ProductDetail() {
   useEffect(() => {
     dispatch(getProductDetailAsync({ id }));
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className="product-detail">
       <div className="single-pro-img">

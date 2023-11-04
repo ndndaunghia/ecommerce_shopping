@@ -71,9 +71,9 @@ export const SIGN_UP_BANNER_DATA = [
     title: "Sign Up For Newsletters",
     content: "Get E-mail updates about our latest shop and",
     subContent: "special offers.",
-    image: banner6
-  }
-]
+    image: banner6,
+  },
+];
 
 export const GUIDANCE = [
   {
@@ -112,23 +112,27 @@ export const CATEGORY_IMAGE = [
     title: "T-shirt",
     image:
       "https://theme.hstatic.net/200000260587/1001126984/14/img_category_1.png?v=140",
+    link: "T-shirt",
   },
   {
     id: 2,
     title: "Hoddie",
     image:
       "https://theme.hstatic.net/200000260587/1001126984/14/img_category_2.png?v=140",
+    link: "Hoodie",
   },
   {
     id: 3,
     title: "Shirts",
     image:
       "https://theme.hstatic.net/200000260587/1001126984/14/img_category_3.png?v=140",
+    link: "Shirt",
   },
   {
     id: 4,
     title: "Shorts",
     image:
       "https://theme.hstatic.net/200000260587/1001126984/14/img_category_4.png?v=140",
+    link: "Shorts",
   },
 ];

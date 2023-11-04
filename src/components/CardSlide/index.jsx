@@ -22,11 +22,11 @@ export default function CardSlide() {
       });
   }, []);
   const settings = {
-    infinite: true,
+    // infinite: true,
     speed: 4000,
     slidesToShow: 4,
     slidesToScroll: 4,
-    autoplay: true,
+    // autoplay: true,
     initialSlide: 0,
     dots: false,
     responsive: [
@@ -61,10 +61,11 @@ export default function CardSlide() {
       <Slider {...settings}>
         {product.map((item, index) => {
           return (
-            <Link to={`product-detail/${item._id}`}>
+            <Link to={`product-detail/${item._id}`} key={item._id}>
               <ProductCard
                 name={item.name}
                 image={item.images[0].url}
+                subImage={item.images[1].url}
                 price={item.price}
                 offerPrice={item.offerPrice}
               />

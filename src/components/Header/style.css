@@ -83,6 +83,21 @@
   color: #088178;
 }
 
+.accountMenu {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #999999;
+}
+
+.accountMenu > ul {
+  list-style: none;
+}
+
+.accountMenu > ul > li {
+  margin: 10px;
+}
+
 @media (max-width: 991px) {
   .header {
   }

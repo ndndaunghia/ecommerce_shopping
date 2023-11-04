@@ -25,15 +25,14 @@ const TypographyC = styled(Typography)({
 export default function SignUp() {
   return (
     <FormWrapperC>
-      <TypographyC variant="h4">Đăng ký</TypographyC>
+      <TypographyC variant="h4">Sign up</TypographyC>
       <CardC>
         <CardContent>
           <form>
             <Grid container spacing={3}>
               <Grid xs={12} item>
                 <InputC
-                  id="outlined-basic"
-                  label="Tên đăng nhập"
+                  label="Email"
                   variant="outlined"
                   type="email"
                   size="small"
@@ -43,8 +42,7 @@ export default function SignUp() {
               </Grid>
               <Grid xs={12} item>
                 <InputC
-                  id="outlined-basic"
-                  label="Mật khẩu"
+                  label="Password"
                   variant="outlined"
                   type="password"
                   size="small"
@@ -54,8 +52,7 @@ export default function SignUp() {
               </Grid>
               <Grid xs={12} item>
                 <InputC
-                  id="outlined-basic"
-                  label="Xác nhận mật khẩu"
+                  label="Confirm password"
                   variant="outlined"
                   type="password"
                   size="small"
@@ -65,8 +62,7 @@ export default function SignUp() {
               </Grid>
               <Grid xs={12} item>
                 <InputC
-                  id="outlined-basic"
-                  label="Họ và tên"
+                  label="Username"
                   variant="outlined"
                   type="text"
                   size="small"
@@ -76,8 +72,7 @@ export default function SignUp() {
               </Grid>
               <Grid xs={12} item>
                 <InputC
-                  id="outlined-basic"
-                  label="Số điện thoại"
+                  label="Phone number"
                   variant="outlined"
                   type="tel"
                   size="small"
@@ -88,8 +83,7 @@ export default function SignUp() {
               </Grid>
               <Grid xs={12} item>
                 <InputC
-                  id="outlined-basic"
-                  label="Địa chỉ"
+                  label="Address"
                   variant="outlined"
                   type="text"
                   size="small"
@@ -99,7 +93,7 @@ export default function SignUp() {
               </Grid>
               <Grid xs={12} item>
                 <Button variant="outlined" fullWidth type="submit">
-                  Đăng ký
+                  Sign up
                 </Button>
               </Grid>
             </Grid>

@@ -1,5 +1,11 @@
 export const BASE_API = "https://mern-shop-app-be.onrender.com/api/v2/";
 
+export const LOGIN_API = BASE_API + "login";
+
+export const SEARCH_PRODUCT_API = BASE_API + "products?keyword="
+
+export const CATEGORY_BASE_API = BASE_API + "products?category=";
+
 export const GET_TSHIRT_PRODUCTS = BASE_API + "products?category=T-shirt";
 
 export const GET_HOODIE_PRODUCTS = BASE_API + "products?category=Hoodie";

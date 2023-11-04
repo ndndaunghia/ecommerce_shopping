@@ -9,6 +9,9 @@ import TrendingSection from "./components/TrendingSection";
 import GuidanceSection from "./components/GuidanceSection";
 import ProductDetail from "./pages/ProductDetail";
 import MediumBanner from "./components/MediumBanner";
+import Footer from "./components/Footer";
+import Category from "./pages/Category";
+import Search from "./pages/SearchProduct";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +20,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Outlet />
+        <Footer />
       </>
     ),
     children: [
@@ -33,18 +37,34 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/sign-in",
-        element: <SignIn />,
+        path: "/category/:category",
+        element: <Category />,
       },
       {
-        path: "/sign-up",
-        element: <SignUp />,
+        path: "/category/:category/product-detail/:id",
+        element: <ProductDetail />,
       },
       {
         path: "/product-detail/:id",
         element: <ProductDetail />,
       },
+      {
+        path: "/search?",
+        element: <Search />,
+      },
+      {
+        path: "/search/product-detail/:id",
+        element: <ProductDetail />,
+      },
     ],
+  },
+  {
+    path: "/sign-in",
+    element: <SignIn />,
+  },
+  {
+    path: "/sign-up",
+    element: <SignUp />,
   },
 ]);
 

@@ -9,6 +9,7 @@ export default function InputC({
   size,
   fullWidth,
   required,
+  onChange
 }) {
   return (
     <TextField
@@ -19,7 +20,7 @@ export default function InputC({
       size={size}
       fullWidth={fullWidth}
       required={required}
-
+      onChange={onChange}
     />
   );
 }
