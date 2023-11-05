@@ -4,7 +4,8 @@
   left: 0;
   right: 0;
   background-color: #fff;
-  padding: 1rem 4%;
+  /* padding: 1rem 4%; */
+  padding: 0 4%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,7 +46,7 @@
 
 .active {
   right: 2rem !important;
-  transition: .2s cubic-bezier(0.1, 0.7, 0.6, 0.9);
+  transition: 0.2s cubic-bezier(0.1, 0.7, 0.6, 0.9);
 }
 
 .searchForm {

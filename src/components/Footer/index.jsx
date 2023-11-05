@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import React from "react";
 import styled from "@emotion/styled";
 import { FooterItemContainer } from "../GuidanceSection";
+import logo from "../../assets/logo1.png";
 
 const FooterWrapper = styled(Grid)({
   marginTop: "4rem",
@@ -16,19 +17,9 @@ export default function Footer() {
   return (
     <FooterWrapper container>
       <FooterItem item xs={12} sm={6} md={3}>
-        <h3>Overview</h3>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 10,
-            marginTop: "10px",
-          }}
-        >
-          <a href="">Search</a>
-          <a href="">Product</a>
-          <a href="">Support</a>
-          <a href="">Hotline</a>
+        <div>
+          <img src={logo} alt="" style={{ width: "100%" }} />
+          <p>Copyright ND Fashion</p>
         </div>
       </FooterItem>
       <FooterItem item xs={12} sm={6} md={3}>

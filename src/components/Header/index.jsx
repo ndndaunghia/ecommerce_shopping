@@ -9,6 +9,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { NAVBAR_TITLE } from "../../constant/constant";
 import { useDispatch } from "react-redux";
 import { getSearchAsync } from "../../redux/search";
+import logo from "../../assets/logo1.png";
 export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,7 +54,9 @@ export default function Header() {
   return (
     <header className="header">
       <Link to="/" className="logo">
-        LOGO
+        <div style={{ width: "200px" }}>
+          <img src={logo} alt="" style={{ width: "100%" }} />
+        </div>
       </Link>
 
       <nav className={`navbar ${isShowMenu ? "active" : ""}`}>

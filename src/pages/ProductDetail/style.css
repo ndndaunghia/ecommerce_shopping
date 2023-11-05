@@ -22,7 +22,8 @@
   cursor: pointer;
   width: 5rem;
   height: 5rem;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .single-pro-details {
@@ -70,13 +71,14 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .change-quantity {
-  /* background-color: red; */
   width: 1.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: #d0d4ca;
   cursor: pointer;
+  user-select: none;
 }
 
 .add-to-cart-btn {
@@ -89,12 +91,26 @@ input[type="number"]::-webkit-outer-spin-button {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.out-of-stock-btn {
+  background-color: #e5d4ff;
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 0.2rem;
+  min-width: 10rem;
+}
+
 .product-description-title {
   margin: 2rem 0;
 }
 
 .product-description {
   line-height: 1.4rem;
+}
+
+.stock-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 767px) {
