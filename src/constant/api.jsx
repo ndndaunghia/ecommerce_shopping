@@ -4,6 +4,10 @@ export const LOGIN_API = BASE_API + "login";
 
 export const REGISTER_API = BASE_API + "registration";
 
+export const FORGOT_PASSWORD_API = BASE_API + "password/forgot";
+
+export const RESET_PASSWORD_API = BASE_API + "password/reset/";
+
 export const SEARCH_PRODUCT_API = BASE_API + "products?keyword=";
 
 export const CATEGORY_BASE_API = BASE_API + "products?category=";

@@ -54,7 +54,7 @@ export default function Header() {
   return (
     <header className="header">
       <Link to="/" className="logo">
-        <div style={{ width: "200px" }}>
+        <div style={{ width: "150px" }}>
           <img src={logo} alt="" style={{ width: "100%" }} />
         </div>
       </Link>
@@ -70,7 +70,9 @@ export default function Header() {
       <div className="icon">
         <MenuOutlinedIcon className="iconItem menuBtn" onClick={toggleMenu} />
         <SearchOutlinedIcon className="iconItem" onClick={toggleSearch} />
-        <ShoppingBagOutlinedIcon className="iconItem" />
+        <Link to="/cart">
+          <ShoppingBagOutlinedIcon className="iconItem" />
+        </Link>
         <AccountCircleOutlinedIcon
           className="iconItem"
           onClick={() => showAccountMenu()}

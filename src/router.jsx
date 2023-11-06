@@ -12,6 +12,9 @@ import MediumBanner from "./components/MediumBanner";
 import Footer from "./components/Footer";
 import Category from "./pages/Category";
 import Search from "./pages/SearchProduct";
+import ShoppingCartDemo from "./pages/Cart";
+import ForgotPassword from "./pages/Authorization/ForgotPassword";
+import ResetPassword from "./pages/Authorization/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +59,10 @@ const router = createBrowserRouter([
         path: "/search/product-detail/:id",
         element: <ProductDetail />,
       },
+      {
+        path: "/cart",
+        element: <ShoppingCartDemo />,
+      },
     ],
   },
   {
@@ -65,6 +72,14 @@ const router = createBrowserRouter([
   {
     path: "/sign-up",
     element: <SignUp />,
+  },
+  {
+    path: "/reset-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/password/reset/:token",
+    element: <ResetPassword />,
   },
 ]);
 

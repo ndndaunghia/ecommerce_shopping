@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  Link,
-  Typography,
-} from "@mui/material";
+import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import InputC from "../../../components/InputC";
 import { COLOR } from "../../../constant/constant";
@@ -14,6 +7,7 @@ import axios from "axios";
 import { LOGIN_API } from "../../../constant/api";
 import { useNavigate } from "react-router-dom";
 import { Alert, Snackbar } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const FormWrapperC = styled.div`
   min-height: 100vh;
@@ -28,7 +22,7 @@ const CardC = styled(Card)({
   boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
 });
 
-const ButtonC = styled(Button)({
+export const ButtonC = styled(Button)({
   "&:hover": {
     backgroundColor: COLOR.primaryColor,
     color: COLOR.whiteColor,
@@ -109,7 +103,7 @@ export default function SignIn() {
                   style={{ alignItems: "flex-start", display: "flex" }}
                 >
                   <Typography variant="subtitle1">
-                    <Link href="#" underline="none">
+                    <Link to="/reset-password" underline="none">
                       Forgot password
                     </Link>
                   </Typography>
