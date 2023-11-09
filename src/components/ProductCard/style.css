@@ -32,6 +32,10 @@
   transition: 0.2s linear;
 }
 
+.product-card-icon .icon {
+  color: #333;
+}
+
 .product-card-icon a {
   color: #000;
 }
@@ -40,7 +44,7 @@
   background-color: #088178;
 }
 
-.product-card-icon:hover a {
+.product-card-icon:hover .icon {
   color: #fff;
 }
 

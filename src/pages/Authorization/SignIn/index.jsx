@@ -51,6 +51,7 @@ export default function SignIn() {
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userId", res.data.user._id);
         localStorage.setItem("isLoggedIn", true);
         setShowSuccessAlert(true);
         setTimeout(() => {

@@ -11,17 +11,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductDetailAsync } from "../../redux/detail";
 import "./style.css";
 import { useParams } from "react-router-dom";
+import { addProductToCart, addProductToCartAsync } from "../../redux/cart";
 
 export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("M");
   const [maxQuantityAlert, setMaxQuantityAlert] = useState(false);
+  const [addToCartAlert, setAddToCartAlert] = useState(false);
 
   const dispatch = useDispatch();
   const productDetail = useSelector(
     (state) => state.productDetail.productDetail
   );
+  const loading = useSelector((state) => state.cart.loading);
+
   const { id } = useParams();
+  const { cart } = useSelector((state) => state.cart.cart);
+
+  const handleAdd = () => {
+    const item = {
+      id: id,
+      size: size,
+      quantity: quantity,
+    };
+    dispatch(addProductToCartAsync({ item }));
+    if (!loading) {
+      setAddToCartAlert(true);
+    }
+  };
 
   const handleChange = (e) => {
     setSize(e.target.value);
@@ -63,7 +80,11 @@ export default function ProductDetail() {
   const renderAddBtn = useCallback(() => {
     if (productDetail.product?.Stock > 0) {
       return (
-        <button type="button" className="add-to-cart-btn">
+        <button
+          type="button"
+          className="add-to-cart-btn"
+          onClick={() => handleAdd()}
+        >
           Add to cart
         </button>
       );
@@ -83,6 +104,8 @@ export default function ProductDetail() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  console.log(loading);
 
   return (
     <>
@@ -109,11 +132,11 @@ export default function ProductDetail() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              defaultValuevalue={size}
+              defaultValue={"M"}
               label="Size"
               onChange={handleChange}
             >
-              {productDetail.product?.size.split(",").map((sizeOption) => (
+              {productDetail.product?.size.split(",")?.map((sizeOption) => (
                 <MenuItem key={sizeOption} value={sizeOption.trim()}>
                   {sizeOption.trim()}
                 </MenuItem>
@@ -166,6 +189,21 @@ export default function ProductDetail() {
       >
         <Alert onClose={() => setMaxQuantityAlert(false)} severity="info">
           Max quantity !
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={addToCartAlert}
+        autoHideDuration={2000}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        onClose={() => {
+          setAddToCartAlert(false);
+        }}
+      >
+        <Alert onClose={() => setAddToCartAlert(false)} severity="success">
+          Add product to cart successfully!
         </Alert>
       </Snackbar>
     </>

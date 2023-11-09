@@ -119,18 +119,18 @@ const SignUpRightBanner = styled(Grid)`
   input {
     width: 16rem;
     height: 2rem;
-    border-top-left-radius: .4rem;
-    border-bottom-left-radius: .4rem;
+    border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
     padding: 0 1rem;
   }
 
   button {
-    padding: .5rem 1.4rem;
+    padding: 0.5rem 1.4rem;
     cursor: pointer;
     background-color: #088178;
     color: #fff;
-    border-top-right-radius: .4rem;
-    border-bottom-right-radius: .4rem;
+    border-top-right-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
   }
 `;
 
@@ -177,13 +177,13 @@ export default function MediumBanner() {
     return SIGN_UP_BANNER_DATA.map((data) => {
       return (
         <GridSignUpBanner url={data.image} container key={data.id}>
-          <SignUpLeftBanner xs={12} sm={12} md={6}>
+          <SignUpLeftBanner xs={12} sm={12} md={6} item>
             <h2>{data.title}</h2>
             <h4>
               {data.content} <span>{data.subContent}</span>
             </h4>
           </SignUpLeftBanner>
-          <SignUpRightBanner xs={12} sm={12} md={6}>
+          <SignUpRightBanner xs={12} sm={12} md={6} item>
             <input type="text" />
             <button>Sign Up</button>
           </SignUpRightBanner>

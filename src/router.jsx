@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+
 import Header from "./components/Header";
 import { Outlet } from "react-router-dom";
 import Banner from "./components/Banner";
@@ -15,6 +16,9 @@ import Search from "./pages/SearchProduct";
 import ShoppingCartDemo from "./pages/Cart";
 import ForgotPassword from "./pages/Authorization/ForgotPassword";
 import ResetPassword from "./pages/Authorization/ResetPassword";
+import Payment from "./pages/Payment";
+import ConfirmOrder from "./pages/Payment/ConfirmOrder";
+import Shipping from "./pages/Payment/Shipping";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +84,18 @@ const router = createBrowserRouter([
   {
     path: "/password/reset/:token",
     element: <ResetPassword />,
+  },
+  {
+    path: "/shipping",
+    element: <Shipping />,
+  },
+  {
+    path: "/confirm",
+    element: <ConfirmOrder />,
+  },
+  {
+    path: "/payment",
+    element: <Payment />,
   },
 ]);
 

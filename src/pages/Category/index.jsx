@@ -46,7 +46,7 @@ export default function Category() {
       <GridContainer container className="cardContainer">
         {data.map((data, index) => {
           return (
-            <GridItem item xs={12} sm={6} md={3} key={data.id}>
+            <GridItem item xs={12} sm={6} md={3} key={data._id}>
               <Link to={`product-detail/${data._id}`}>
                 <ProductCard
                   name={data.name}

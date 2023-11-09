@@ -8,6 +8,12 @@ export const FORGOT_PASSWORD_API = BASE_API + "password/forgot";
 
 export const RESET_PASSWORD_API = BASE_API + "password/reset/";
 
+export const CART_API = BASE_API + "cart/";
+
+export const CREATE_ORDER = BASE_API + "order/new";
+
+export const PAYMENT_API = BASE_API + "payment/process";
+
 export const SEARCH_PRODUCT_API = BASE_API + "products?keyword=";
 
 export const CATEGORY_BASE_API = BASE_API + "products?category=";
