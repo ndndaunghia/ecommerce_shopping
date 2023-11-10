@@ -19,6 +19,9 @@ import ResetPassword from "./pages/Authorization/ResetPassword";
 import Payment from "./pages/Payment";
 import ConfirmOrder from "./pages/Payment/ConfirmOrder";
 import Shipping from "./pages/Payment/Shipping";
+import Success from "./pages/Payment/Success";
+import Order from "./pages/Order";
+import AllOrders from "./pages/AllOrders";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +70,14 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <ShoppingCartDemo />,
       },
+      {
+        path: "/order/:id",
+        element: <Order />,
+      },
+      {
+        path: "/all-orders/",
+        element: <AllOrders />,
+      },
     ],
   },
   {
@@ -96,6 +107,10 @@ const router = createBrowserRouter([
   {
     path: "/payment",
     element: <Payment />,
+  },
+  {
+    path: "/success/:id",
+    element: <Success />,
   },
 ]);
 

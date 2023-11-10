@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,13 +6,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import styled from "@emotion/styled";
-import { RotatingLines, TailSpin, ThreeDots } from "react-loader-spinner";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getProductCartAsync, removeProductCartAsync } from "../../redux/cart";
+import { ThreeDots } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../constant/constant";
+import axios from "axios";
+import { ALL_ORDER_API } from "../../constant/api";
 
 const CartWrapper = styled.div`
   margin-top: 6rem;
@@ -26,55 +25,16 @@ const CartWrapper = styled.div`
   }
 `;
 
-const ActionWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 4rem;
-  margin: 4rem 0;
-`;
-
-const LeftAction = styled(Link)`
-  padding: 8px 10px;
-  border: 2px solid #088178;
-  border-radius: 12px;
-
-  :hover {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  }
-`;
-
-const RemoveBtnC = styled(DeleteOutlinedIcon)`
-  cursor: pointer;
-  :hover {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  }
-`;
-
-const RightAction = styled.div``;
-
-export default function SpanningTable() {
-  const dispatch = useDispatch();
+export default function AllOrders() {
+  const csrfToken = localStorage.getItem("token");
+  const config = { headers: { "Content-Type": "application/json" } };
   const navigate = useNavigate();
-  const data = useSelector((state) => state.cart.cart);
-  const loading = useSelector((state) => state.cart.loading);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const totalPrice = data?.cart?.products.reduce((total, item) => {
-    return total + item.productId.price * item.quantity;
-  }, 0);
-
-  const handleRemoveProductFromCart = (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to remove this product from the cart?"
-    );
-    if (confirmed) {
-      dispatch(removeProductCartAsync(id));
-    }
-  };
-
-  const handlePayment = () => {
-    navigate("/shipping");
-  };
-
+  if (csrfToken) {
+    config.headers["token"] = csrfToken;
+  }
   const Spinner = (props) => {
     const style = {
       position: "fixed",
@@ -100,28 +60,37 @@ export default function SpanningTable() {
   };
 
   useEffect(() => {
-    if (isLoggedIn == false) {
+    axios
+      .get(ALL_ORDER_API, config)
+      .then((res) => {
+        setLoading(false);
+        setData(res.data.orders);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
       navigate("/sign-in");
     }
   }, [navigate]);
 
-  useEffect(() => {
-    dispatch(getProductCartAsync());
-  }, []);
-
   return (
     <CartWrapper>
-      {data?.cart?.products.length == 0 ? (
-        <h2>Nothing in your cart</h2>
+      {loading ? (
+        <Spinner />
       ) : (
         <>
-          {" "}
-          <h2>Cart</h2>
-          {loading ? (
-            <Spinner />
-          ) : (
-            <>
-              <TableContainer component={Paper}>
+          <h2>All Order</h2>
+          {data?.map((item, index) => {
+            return (
+              <TableContainer
+                component={Paper}
+                style={{ margin: "4rem 0" }}
+                key={item._id}
+              >
                 <Table sx={{ minWidth: 700 }} aria-label="spanning table">
                   <TableHead>
                     <TableRow>
@@ -132,7 +101,7 @@ export default function SpanningTable() {
                       <TableCell align="right"></TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>Products</TableCell>
+                      <TableCell>Order ID: {item._id}</TableCell>
                       <TableCell align="right">Price</TableCell>
                       <TableCell align="right">Quantity</TableCell>
                       <TableCell align="right">Sum</TableCell>
@@ -140,7 +109,7 @@ export default function SpanningTable() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {data?.cart?.products.map((item, index) => {
+                    {item?.orderItems?.map((item, index) => {
                       return (
                         <TableRow key={index}>
                           <TableCell
@@ -151,58 +120,56 @@ export default function SpanningTable() {
                             }}
                           >
                             <img
-                              src={item.productId?.images[0]?.url}
+                              src={item.productImage}
                               alt=""
                               style={{ width: "100px" }}
                             />
-                            {item.productId.name}
-                            <br />
-                            Size: {item.size}
+                            {item.productName}
                           </TableCell>
                           <TableCell align="right">
-                            {item.productId.price}
+                            {item.productPrice}
                           </TableCell>
                           <TableCell align="right">{item.quantity}</TableCell>
                           <TableCell align="right">
-                            {item.productId.price * item.quantity}
+                            {item.productPrice * item.quantity}
                           </TableCell>
-                          <TableCell align="right">
-                            <RemoveBtnC
-                              onClick={() =>
-                                handleRemoveProductFromCart(item._id)
-                              }
-                            />
-                          </TableCell>
+                          <TableCell align="right"></TableCell>
                         </TableRow>
                       );
                     })}
                   </TableBody>
                   <TableRow>
                     <TableCell align="center"></TableCell>
+                    <TableCell align="right">Shipping Fee</TableCell>
+                    <TableCell align="right" colSpan={2}>
+                      30000
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="center"></TableCell>
                     <TableCell align="right">Total Price</TableCell>
                     <TableCell align="right" colSpan={2}>
-                      {totalPrice}
+                      {item.totalPrice}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="center"></TableCell>
+                    <TableCell align="right">Payment status</TableCell>
+                    <TableCell align="right" colSpan={2}>
+                      Paid
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="center"></TableCell>
+                    <TableCell align="right">Payment Time</TableCell>
+                    <TableCell align="right" colSpan={2}>
+                      {new Date(item.paidAt).toLocaleString()}
                     </TableCell>
                   </TableRow>
                 </Table>
               </TableContainer>
-
-              <ActionWrapper>
-                <LeftAction>
-                  <Link to="/">Continue Shopping</Link>
-                </LeftAction>
-                <RightAction>
-                  <button
-                    type="button"
-                    className="add-to-cart-btn"
-                    onClick={handlePayment}
-                  >
-                    Pay Now
-                  </button>
-                </RightAction>
-              </ActionWrapper>
-            </>
-          )}
+            );
+          })}
         </>
       )}
     </CartWrapper>

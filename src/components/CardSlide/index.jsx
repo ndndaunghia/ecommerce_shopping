@@ -26,7 +26,7 @@ export default function CardSlide() {
     speed: 4000,
     slidesToShow: 4,
     slidesToScroll: 4,
-    // autoplay: true,
+    autoplay: true,
     initialSlide: 0,
     dots: false,
     responsive: [

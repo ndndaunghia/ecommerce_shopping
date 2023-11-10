@@ -1,10 +1,11 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
-import { CART_API, CREATE_ORDER } from "../constant/api";
+import { BASE_API, CART_API, CREATE_ORDER } from "../constant/api";
 
 export const createOrderAsync = createAction("cart/createOrderAsync");
 export const getProductCartAsync = createAction("cart/getProductCartAsync");
+export const getSingleOrderAsync = createAction("cart/getSingleOrderAsync");
 export const removeProductCartAsync = createAction(
   "cart/removeProductCartAsync"
 );
@@ -46,6 +47,19 @@ function* createOrderSaga(action) {
   }
 }
 
+function* getSingleOrderSaga(action) {
+  const config = { headers: { "Content-Type": "application/json" } };
+
+  if (token) {
+    config.headers["token"] = token;
+  }
+  const data = yield call(() =>
+    axios.get(BASE_API + "order/" + action.payload, config)
+  );
+
+  yield put(getSingleOrder(data?.data));
+}
+
 // function* removeProductCartSaga(action) {
 //   try {
 //     yield call(() => axios.delete(CART_API + userId + "/" + action.payload));
@@ -58,6 +72,7 @@ function* createOrderSaga(action) {
 
 export function* watchOrderSaga() {
   yield takeLatest(createOrderAsync, createOrderSaga);
+  yield takeLatest(getSingleOrderAsync, getSingleOrderSaga);
   //   yield takeLatest(getProductCartAsync, getProductCartSaga);
   //   yield takeLatest(removeProductCartAsync, removeProductCartSaga);
 }
@@ -79,6 +94,9 @@ const orderSlice = createSlice({
       console.log(action.payload);
       // state.cart = state.cart.filter((cart) => cart.id !== action.payload);
     },
+    getSingleOrder: (state, action) => {
+      state.info = action.payload;
+    },
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
@@ -86,6 +104,11 @@ const orderSlice = createSlice({
 });
 
 const orderReducer = orderSlice.reducer;
-export const { createOrder, getProductCart, removeProduct, setLoading } =
-  orderSlice.actions;
+export const {
+  createOrder,
+  getProductCart,
+  removeProduct,
+  setLoading,
+  getSingleOrder,
+} = orderSlice.actions;
 export default orderReducer;

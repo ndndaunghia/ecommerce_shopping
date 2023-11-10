@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   min-height: 100vh;
-  background: url("../../assets/full_width_banner.png") no-repeat;
+  background: url("../../assets/banner2.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   padding: 2rem 9%;
@@ -16,19 +16,19 @@
 
 .homeBanner .contentBanner h3 {
   font-size: 3rem;
-  color: #333;
+  color: #fff;
 }
 
 .homeBanner .contentBanner p {
   font-size: 1.2rem;
-  color: #333;
+  color: #fff;
 }
 
 .homeBanner .btnBanner {
   display: inline-block;
   margin-top: 1rem;
   border-radius: 0.5rem;
-  background-color: #333;
+  background-color: #00A9FF;
   color: #fff;
   width: 10rem;
 }

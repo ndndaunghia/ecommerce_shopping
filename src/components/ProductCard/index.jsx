@@ -28,8 +28,8 @@ export default function ProductCard(props) {
         <h3 className="product-card-name">{name}</h3>
         <div className="product-card-price-wrapper">
           <div className="product-card-price">
-            <span className="product-card-current-price">{offerPrice}</span>
-            <span className="product-card-before-price">{price}</span>
+            <span className="product-card-current-price">{price}</span>
+            <span className="product-card-before-price">400000</span>
           </div>
         </div>
       </div>

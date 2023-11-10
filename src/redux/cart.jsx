@@ -8,6 +8,7 @@ export const getProductCartAsync = createAction("cart/getProductCartAsync");
 export const removeProductCartAsync = createAction(
   "cart/removeProductCartAsync"
 );
+export const cleanCartAsync = createAction("cart/cleanCartAsync");
 
 const userId = localStorage.getItem("userId");
 
@@ -52,7 +53,19 @@ function* removeProductCartSaga(action) {
     yield put(removeProduct(action.payload));
     yield put(getProductCartAsync());
   } catch (error) {
+    console.log(error);
     // Handle error if needed
+  }
+}
+
+function* cleanCartSaga(action) {
+  try {
+    yield call(() => axios.delete(CART_API + userId));
+    yield put(getProductCartAsync());
+
+    // yield put(cleanCart(action.payload))
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -60,6 +73,7 @@ export function* watchCartSaga() {
   yield takeLatest(addProductToCartAsync, addProductToCartSaga);
   yield takeLatest(getProductCartAsync, getProductCartSaga);
   yield takeLatest(removeProductCartAsync, removeProductCartSaga);
+  yield takeLatest(cleanCartAsync, cleanCartSaga);
 }
 
 const cartSlice = createSlice({
@@ -79,6 +93,9 @@ const cartSlice = createSlice({
       console.log(action.payload);
       // state.cart = state.cart.filter((cart) => cart.id !== action.payload);
     },
+    cleanCart: (state, action) => {
+      console.log(action.payload);
+    },
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
@@ -86,6 +103,11 @@ const cartSlice = createSlice({
 });
 
 const cartReducer = cartSlice.reducer;
-export const { addProductToCart, getProductCart, removeProduct, setLoading } =
-  cartSlice.actions;
+export const {
+  addProductToCart,
+  getProductCart,
+  removeProduct,
+  cleanCart,
+  setLoading,
+} = cartSlice.actions;
 export default cartReducer;

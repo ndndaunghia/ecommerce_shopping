@@ -5,7 +5,7 @@
   right: 0;
   background-color: #fff;
   /* padding: 1rem 4%; */
-  padding: .4rem 4%;
+  padding: 0.4rem 4%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -86,9 +86,12 @@
 
 .accountMenu {
   position: absolute;
-  top: 60px;
+  top: 66px;
   right: 20px;
-  background-color: #999999;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #ececec;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
 }
 
 .accountMenu > ul {
@@ -96,7 +99,15 @@
 }
 
 .accountMenu > ul > li {
-  margin: 10px;
+  padding: 10px
+}
+
+.accountMenu > ul > li:hover {
+  background-image: linear-gradient(90deg, #f4f4f4 0%, #efefef 100%);
+}
+
+.accountMenu > ul > li > a {
+  color: #333;
 }
 
 @media (max-width: 991px) {

@@ -14,6 +14,10 @@ export const CREATE_ORDER = BASE_API + "order/new";
 
 export const PAYMENT_API = BASE_API + "payment/process";
 
+export const SINGLE_ORDER_API = BASE_API + "order/";
+
+export const ALL_ORDER_API = BASE_API + "orders/me";
+
 export const SEARCH_PRODUCT_API = BASE_API + "products?keyword=";
 
 export const CATEGORY_BASE_API = BASE_API + "products?category=";

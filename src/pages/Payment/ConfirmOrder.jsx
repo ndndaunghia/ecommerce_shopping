@@ -5,9 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { getInfoAsync } from "../../redux/info";
 import { getProductCart, getProductCartAsync } from "../../redux/cart";
+import { isLoggedIn } from "../../constant/constant";
 
 const ConfirmOrder = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const cartItems = useSelector((state) => state.cart.cart);
@@ -35,7 +36,7 @@ const ConfirmOrder = () => {
 
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
 
-    history("/payment");
+    navigate("/payment");
   };
 
   useEffect(() => {
@@ -43,6 +44,11 @@ const ConfirmOrder = () => {
     dispatch(getProductCartAsync());
   }, []);
 
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/sign-in");
+    }
+  }, [navigate]);
 
   return (
     <>

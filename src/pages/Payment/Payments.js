@@ -15,12 +15,13 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getInfoAsync } from "../../redux/info";
-import { getProductCartAsync } from "../../redux/cart";
+import { cleanCartAsync, getProductCartAsync } from "../../redux/cart";
 import axios from "axios";
 import { CREATE_ORDER, PAYMENT_API } from "../../constant/api";
+import { isLoggedIn } from "../../constant/constant";
 
 const Payments = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -56,11 +57,12 @@ const Payments = () => {
     totalPrice: orderInfo.totalPrice,
   };
 
-  const handlePayment = (order) => {
-    axios
+  const handlePayment = async (order) => {
+    await axios
       .post(CREATE_ORDER, order, config)
       .then((res) => {
-        console.log(res);
+        dispatch(cleanCartAsync());
+        navigate(`/success/${res.data.order._id}`);
       })
       .catch((error) => {
         console.log(error);
@@ -108,10 +110,6 @@ const Payments = () => {
           };
 
           handlePayment(order);
-          // dispatch(createOrder(order));
-          // dispatch(removeItemsFromCart(cartItems.productID));
-
-          // history("/success");
         } else {
         }
       }
@@ -124,6 +122,12 @@ const Payments = () => {
     dispatch(getInfoAsync());
     dispatch(getProductCartAsync());
   }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/sign-in");
+    }
+  }, [navigate]);
 
   return (
     <>
