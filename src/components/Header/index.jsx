@@ -16,6 +16,7 @@ export default function Header() {
   const [isShowSearchForm, setIsShowSearchForm] = useState(false);
   const [isShowMenu, setIsShowMenu] = useState(false);
   const [isShowAccountMenu, setIsShowAccountMenu] = useState(false);
+  
 
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"));
   const [searchValue, setSearchValue] = useSearchParams();
@@ -50,7 +51,7 @@ export default function Header() {
     setIsShowAccountMenu(!isShowAccountMenu);
   };
 
-  useEffect(() => {}, [isLoggedIn]);
+  // useEffect(() => {}, [isLoggedIn]);
   return (
     <header className="header">
       <Link to="/" className="logo">
@@ -70,7 +71,7 @@ export default function Header() {
       <div className="icon">
         <MenuOutlinedIcon className="iconItem menuBtn" onClick={toggleMenu} />
         <SearchOutlinedIcon className="iconItem" onClick={toggleSearch} />
-        <Link to="/cart">
+        <Link to={isLoggedIn ? "/cart" : "/sign-in"}>
           <ShoppingBagOutlinedIcon className="iconItem" />
         </Link>
         <AccountCircleOutlinedIcon

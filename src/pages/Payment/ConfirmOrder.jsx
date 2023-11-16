@@ -44,11 +44,11 @@ const ConfirmOrder = () => {
     dispatch(getProductCartAsync());
   }, []);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/sign-in");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate("/sign-in");
+  //   }
+  // }, [navigate]);
 
   return (
     <>

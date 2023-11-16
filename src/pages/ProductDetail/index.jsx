@@ -10,33 +10,38 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetailAsync } from "../../redux/detail";
 import "./style.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addProductToCart, addProductToCartAsync } from "../../redux/cart";
+// import { isLoggedIn } from "../../constant/constant";
 
 export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("M");
   const [maxQuantityAlert, setMaxQuantityAlert] = useState(false);
   const [addToCartAlert, setAddToCartAlert] = useState(false);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const productDetail = useSelector(
     (state) => state.productDetail.productDetail
   );
   const loading = useSelector((state) => state.cart.loading);
-
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const { id } = useParams();
   const { cart } = useSelector((state) => state.cart.cart);
 
   const handleAdd = () => {
-    const item = {
-      id: id,
-      size: size,
-      quantity: quantity,
-    };
-    dispatch(addProductToCartAsync({ item }));
-    if (!loading) {
-      setAddToCartAlert(true);
+    if (isLoggedIn) {
+      const item = {
+        id: id,
+        size: size,
+        quantity: quantity,
+      };
+      dispatch(addProductToCartAsync({ item }));
+      if (!loading) {
+        setAddToCartAlert(true);
+      }
+    } else {
+      navigate("/sign-in");
     }
   };
 
@@ -105,7 +110,6 @@ export default function ProductDetail() {
     window.scrollTo(0, 0);
   }, []);
 
-  console.log(loading);
 
   return (
     <>
@@ -125,7 +129,7 @@ export default function ProductDetail() {
           <h4>Home / {productDetail.product?.category}</h4>
           <h2>{productDetail.product?.name}</h2>
           <h4 className="product-price">
-            {productDetail.product?.offerPrice} VND
+            {productDetail.product?.price} VND
           </h4>
           <FormControl sx={{ m: 1, minWidth: 80 }} size="small">
             <InputLabel id="demo-simple-select-label">Size</InputLabel>

@@ -5,7 +5,7 @@ import banner4 from "../assets/image/b4.jpg";
 import banner5 from "../assets/image/b18.jpg";
 import banner6 from "../assets/image/b2.jpg";
 
-export const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+export let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
 export const NAVBAR_TITLE = {
   home: "Home",

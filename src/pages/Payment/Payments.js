@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CheckoutSteps from "./CheckoutSteps";
 import { Typography } from "@mui/material";
 import {
@@ -19,8 +19,10 @@ import { cleanCartAsync, getProductCartAsync } from "../../redux/cart";
 import axios from "axios";
 import { CREATE_ORDER, PAYMENT_API } from "../../constant/api";
 import { isLoggedIn } from "../../constant/constant";
+import { ThreeDots } from "react-loader-spinner";
 
 const Payments = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -58,11 +60,13 @@ const Payments = () => {
   };
 
   const handlePayment = async (order) => {
+    setLoading(true);
     await axios
       .post(CREATE_ORDER, order, config)
       .then((res) => {
         dispatch(cleanCartAsync());
         navigate(`/success/${res.data.order._id}`);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -123,17 +127,37 @@ const Payments = () => {
     dispatch(getProductCartAsync());
   }, []);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/sign-in");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate("/sign-in");
+  //   }
+  // }, [navigate]);
 
   return (
     <>
+      {loading && (
+        <ThreeDots
+          height="40"
+          width="40"
+          radius="9"
+          color="#4fa94d"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+          }}
+          wrapperClassName=""
+          visible={true}
+        />
+      )}
       <CheckoutSteps activeStep={2} />
       <div className="paymentContainer">
-        <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
+        <form
+          className="paymentForm"
+          onSubmit={(e) => submitHandler(e)}
+          style={loading ? { filter: "blur(2px)" } : null}
+        >
           <Typography>Card Info</Typography>
           <div>
             <CreditCardIcon />

@@ -99,11 +99,11 @@ export default function SpanningTable() {
     );
   };
 
-  useEffect(() => {
-    if (isLoggedIn == false) {
-      navigate("/sign-in");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (isLoggedIn == false) {
+  //     navigate("/sign-in");
+  //   }
+  // }, [navigate]);
 
   useEffect(() => {
     dispatch(getProductCartAsync());

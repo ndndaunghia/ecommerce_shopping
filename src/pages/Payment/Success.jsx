@@ -8,11 +8,11 @@ import { isLoggedIn } from "../../constant/constant";
 const Success = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/sign-in");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate("/sign-in");
+  //   }
+  // }, [navigate]);
   return (
     <div className="orderSuccess">
       <CheckCircleIcon />

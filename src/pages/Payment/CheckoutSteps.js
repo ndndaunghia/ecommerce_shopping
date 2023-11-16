@@ -29,11 +29,11 @@ const CheckoutSteps = ({ activeStep }) => {
     marginTop: '2rem'
   };
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/sign-in");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate("/sign-in");
+  //   }
+  // }, [navigate]);
 
   return (
     <>
