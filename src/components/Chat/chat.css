@@ -1,0 +1,5 @@
+.chat-wrapper {
+    /* margin-top: 6rem; */
+    display: flex;
+    justify-content: center;
+}

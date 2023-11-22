@@ -83,7 +83,7 @@ export default function Header() {
             {isLoggedIn ? (
               <ul>
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/chat">Chat</Link>
                 </li>
                 <li>
                   <Link to="/all-orders">All Orders</Link>

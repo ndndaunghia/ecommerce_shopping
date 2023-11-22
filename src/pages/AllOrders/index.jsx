@@ -71,11 +71,6 @@ export default function AllOrders() {
       });
   }, []);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/sign-in");
-    }
-  }, [navigate]);
 
   return (
     <CartWrapper>

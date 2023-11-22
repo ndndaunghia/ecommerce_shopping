@@ -22,6 +22,7 @@ import Shipping from "./pages/Payment/Shipping";
 import Success from "./pages/Payment/Success";
 import Order from "./pages/Order";
 import AllOrders from "./pages/AllOrders";
+import Chat from "./components/Chat";
 
 const router = createBrowserRouter([
   {
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
   {
     path: "/success/:id",
     element: <Success />,
+  },
+  {
+    path: "/chat",
+    element: <Chat />,
   },
 ]);
 
